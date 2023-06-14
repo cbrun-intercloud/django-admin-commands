@@ -4,7 +4,7 @@ from django.http import HttpResponseNotFound
 from django.shortcuts import render
 from django.template.defaultfilters import linebreaksbr
 from django.urls import reverse
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
@@ -89,7 +89,7 @@ class CommandAdminBase(admin.ModelAdmin):
         opts = self.model._meta
         context = dict(
             self.admin_site.each_context(request),
-            module_name=force_text(opts.verbose_name_plural),
+            module_name=force_str(opts.verbose_name_plural),
             has_add_permission=self.has_add_permission(request),
             opts=opts,
             command=command,
